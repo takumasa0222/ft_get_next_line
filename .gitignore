@@ -1,4 +1,5 @@
-.vscode/settings.json
+.vscode*
 *.txt
 *.o
 *.out
+*dSYM
