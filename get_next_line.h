@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 22:06:45 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/05/25 04:00:39 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/05/25 13:06:56 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ typedef struct s_status
 {
 	char	buffer[BUFFER_SIZE];
 	ssize_t	current;
-	ssize_t	read_p;
 	ssize_t	fd;
 	ssize_t	read_ret;
+	ssize_t	buffer_size;
 }	t_status;
 
 char	*read_file(t_status *status);
