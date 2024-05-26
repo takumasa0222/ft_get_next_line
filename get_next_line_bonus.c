@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 22:06:27 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/05/25 16:48:35 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/05/25 17:19:06 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static t_status	status;
+	static t_status	status_lst;
 
+
+	get_status(fd, &status_lst); 
 	if (fd < 0)
 		return (NULL);
 	if (fd != status.fd)
@@ -28,6 +29,24 @@ char	*get_next_line(int fd)
 	}
 	//printf("status.read_p:%lu status.current:%lu  BUFFER_SIZE:%d\n",status.read_p, status.current,  BUFFER_SIZE);
 	return (read_file(&status));
+}
+
+t_status	*get_status(int fd, t_status *lst)
+{
+	t_status	*new_status;
+
+	while (lst->next)
+	{
+		new_status = malloc(sizeof(t_status));
+		if (!lst->next)
+		{
+
+		}
+		new_status->current = 0;
+		new_status->read_ret = 0;
+		new_status->fd = fd;
+		new_status->buffer_size = BUFFER_SIZE;
+	}
 }
 
 char	*read_file(t_status *status)
@@ -104,19 +123,14 @@ int	main(void)
 		fflush(stdout);
 		free(ret0);
 		ret0 = NULL;
-		// ret0 = get_next_line(fd1);
-		// if (ret0 != NULL) {
-		// 	printf("your result from text2: %s\n", ret0);
-		// 	fflush(stdout);
-		// 	free(ret0);
-		// 	ret0 = NULL;
-		// }
+		ret0 = get_next_line(fd1);
+		if (ret0 != NULL) {
+			printf("your result from text2: %s\n", ret0);
+			fflush(stdout);
+			free(ret0);
+			ret0 = NULL;
+		}
 	}
 	close(fd);
 	close(fd1);
-}
-__attribute__((destructor))
-static void	a(void)
-{
-	system("leaks -q a.out");
 }
