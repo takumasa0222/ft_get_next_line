@@ -6,12 +6,11 @@
 /*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 22:06:27 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/05/26 23:28:11 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/05/28 01:27:22 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*get_next_line(int fd)
 {
